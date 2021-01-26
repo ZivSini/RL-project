@@ -3,7 +3,10 @@ import tensorflow as tf
 import tensorflow.keras as keras
 import gym
 import time
-
+from collections import deque
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense, Flatten
+from tensorflow.keras.layers import Conv2D, MaxPooling2D
 
 np.random.seed(123)
 print("NumPy:{}".format(np.__version__))
@@ -52,8 +55,7 @@ for i_episode in range(n_episodes):
     print('Episode {} finished at t {} with score {}'.format(i_episode,
                                                              t, score))
 
-import time
-import numpy as np
+
 
 frame_time = 1.0 / 15  # seconds
 n_episodes = 500
@@ -76,10 +78,7 @@ for i_episode in range(n_episodes):
             t = t + 1
     scores.append(score)
     # print("Episode {} finished at t {} with score {}".format(i_episode,t,score))
-print('Average score {}, max {}, min {}'.format(np.mean(scores),
-                                                np.max(scores),
-                                                np.min(scores)
-                                                ))
+print('Average score {}, max {}, min {}'.format(np.mean(scores), np.max(scores), np.min(scores)))
 
 tf.reset_default_graph()
 keras.backend.clear_session()
@@ -165,9 +164,7 @@ def experiment(env, policy, n_episodes, r_max=0, t_max=0):
                   np.mean(rewards)))
 
 
-from collections import deque
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, Flatten
+
 
 # build the Q-Network
 model = Sequential()
@@ -200,10 +197,7 @@ memory = deque(maxlen=1000)
 
 experiment(env, policy_q_nn, n_episodes)
 
-from collections import deque
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, Flatten
-from tensorflow.keras.layers import Conv2D, MaxPooling2D
+
 
 # build the CNN Q-Network
 model = Sequential()
